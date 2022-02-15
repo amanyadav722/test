@@ -4,7 +4,7 @@ node {
     def rtMaven
     
     stage ('Clone') {
-        git url: 'https://github.com/Paladin-972/java-hello-world-with-maven.git'
+        git url: 'https://github.com/amanyadav722/test.git'
     }
  
     stage ('Artifactory configuration') {
