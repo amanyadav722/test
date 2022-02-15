@@ -1,28 +1,45 @@
-node {
-    def server
-    def buildInfo
-    def rtMaven
+pipeline {
+
+  agent any
+
+  options {
+
+    buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+
+  }
+
+  stages {
+
+    stage('Clone sources') {
+      
+       git url: 'https://github.com/amanyadav722/mspr_dev.git'
+      
+    }
     
-    stage ('Clone') {
-        git url: 'https://github.com/amanyadav722/test.git'
+    
+    stage('Some configuration'){
+      
+      'some integration de Jenkins comme gréer des credentials et des plugins'
+      
     }
- 
-    stage ('Artifactory configuration') {
-        }
- 
-    stage ('Test') {
-        rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean test'
+    
+    
+    stage('site web'){
+      
+      'creér des fontionalites pour affichager details de agents'
+      
     }
-        
-    stage ('Install') {
-        rtMaven.run pom: 'maven-example/pom.xml', goals: 'install', buildInfo: buildInfo
+    
+    stage('affchage details generé'){
+      
     }
- 
-    stage ('Deploy') {
-        rtMaven.deployer.deployArtifacts buildInfo
+    
+    stage('publish build infos'){
+      
     }
-        
-    stage ('Publish build info') {
-        server.publishBuildInfo buildInfo
+
     }
+
+  }
+
 }
